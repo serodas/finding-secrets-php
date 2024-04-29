@@ -16,3 +16,18 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(
+    [
+        'prefix' => 'api/v1',
+    ],
+    function () use ($router) {
+        $router->get('users', 'UserController@index');
+        $router->get('users/{id}', 'UserController@get');
+        $router->post('users', 'UserController@create');
+        $router->put('users/{id}', 'UserController@update');
+        $router->delete('users/{id}', 'UserController@delete');
+        $router->get('users/{id}/location', 'UserController@getCurrentLocation');
+        $router->post('users/{id}/location/latitude/{latitude}/longitude/{longitude}', 'UserController@setCurrentLocation');
+    }
+);
