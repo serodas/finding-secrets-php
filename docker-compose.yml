@@ -59,6 +59,42 @@ services:
         ports:
             - 8443:443
             - 8081:80
+
+    ##
+    # Secret Microservice
+    ##
+    microservice_secret_php:
+        container_name: microservice_secret_php
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./microservices/secret/app:/var/www/app:delegated
+        expose:
+            - 9000
+    microservice_secret_nginx:
+        container_name: microservice_secret_nginx
+        build:
+            context: .
+            dockerfile: ./microservices/secret/nginx/Dockerfile
+        volumes:
+            - ./microservices/secret/app:/var/www/app:delegated
+        depends_on:
+            - microservice_secret_php
+        ports:
+            - 8083:80
+    microservice_secret_database:
+        container_name: microservice_secret_database
+        image: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=mysecret
+            - MYSQL_DATABASE=finding_secrets
+            - MYSQL_USER=secret
+            - MYSQL_PASSWORD=mysecret
+        ports:
+            - 6666:3306
+        command: ["--default-authentication-plugin=mysql_native_password"]
+
     ##
     # Telemetry: prometheus
     ##
