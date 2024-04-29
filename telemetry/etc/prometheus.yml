@@ -9,3 +9,8 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['microservice_battle_nginx:8081']
+
+  - job_name: 'microservice_user_nginx'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['microservice_user_nginx:8084']
