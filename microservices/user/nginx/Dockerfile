@@ -8,8 +8,8 @@ RUN apt-get update \
         unzip \
     && rm -rf /var/lib/apt/lists/*
 
-COPY microservices/battle/nginx/config/ /etc
-COPY microservices/battle/nginx/scripts/ /usr/local/bin
+COPY microservices/user/nginx/config/ /etc
+COPY microservices/user/nginx/scripts/ /usr/local/bin
 
 RUN chmod +x /usr/local/bin/sensor.sh
 
