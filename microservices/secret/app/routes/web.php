@@ -23,6 +23,7 @@ $router->group(
     ],
     function () use ($router) {
         $router->get('secrets', 'SecretController@index');
+        $router->get('secrets/{id}', 'SecretController@get');
         $router->post('secrets', 'SecretController@create');
     }
 );

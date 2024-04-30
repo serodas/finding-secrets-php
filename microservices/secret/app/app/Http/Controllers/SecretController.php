@@ -28,6 +28,17 @@ class SecretController extends Controller
         return response()->json($data);
     }
 
+    public function get(int $id): JsonResponse
+    {
+        $record = Secret::query()->find($id);
+
+        if ($record) {
+            return response()->json($record);
+        }
+
+        return response()->json(['error' => 'Record not found'], 404);
+    }
+
     public function create(Request $request): void
     {
         $this->validate(
