@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\ServerException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -64,5 +67,27 @@ class UserController extends Controller
             'latitude'  => $latitude,
             'longitude' => $longitude
         ]);
+    }
+
+    public function getWallet(int $id): JsonResponse
+    {
+        $client = new Client(['verify' => false]);
+        try {
+            $remoteCall = $client->get(
+                'http://microservice_secret_nginx/api/v1/secrets/' . $id
+            );
+        } catch (ConnectException $e) {
+            throw $e;
+        } catch (ServerException $e) {
+            throw $e;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        return response()->json(
+            [
+                'data'       => json_decode($remoteCall->getBody()),
+            ]
+        );
     }
 }

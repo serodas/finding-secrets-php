@@ -29,5 +29,6 @@ $router->group(
         $router->delete('users/{id}', 'UserController@delete');
         $router->get('users/{id}/location', 'UserController@getCurrentLocation');
         $router->post('users/{id}/location/latitude/{latitude}/longitude/{longitude}', 'UserController@setCurrentLocation');
+        $router->get('users/{id}/wallet', 'UserController@getWallet');
     }
 );
