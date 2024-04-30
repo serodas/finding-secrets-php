@@ -27,4 +27,20 @@ class SecretController extends Controller
         $data = $this->fractal->createData($collection)->toArray();
         return response()->json($data);
     }
+
+    public function create(Request $request): void
+    {
+        $this->validate(
+            $request,
+            [
+                'name' => 'required|string|unique:secrets,name',
+                'latitude' => 'required|numeric',
+                'longitude' => 'required|numeric',
+                'location_name' => 'required|string'
+            ]
+        );
+
+        $secret = Secret::create($request->all());
+        $secret->save();
+    }
 }

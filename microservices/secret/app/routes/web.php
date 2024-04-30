@@ -22,6 +22,7 @@ $router->group(
         'prefix' => 'api/v1',
     ],
     function () use ($router) {
-        $router->post('secrets', 'SecretController@index');
+        $router->get('secrets', 'SecretController@index');
+        $router->post('secrets', 'SecretController@create');
     }
 );
