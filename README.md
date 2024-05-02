@@ -21,8 +21,8 @@ The application is structured into four distinct microservices:
 
 - **Battle Service**: Manages the combat aspects of the game, allowing players to engage in battles while searching for secrets.
 - **Location Service**: Handles geolocation functionality, enabling the game to place secrets around the world and track player movements.
-- **Secret Service**: Responsible for the generation and management of secrets that players find during their adventures.
-- **User Service**: Takes care of user authentication, profiles, and progress within the game.
+- **Secret Service**: Responsible for the generation and management of secrets that players find during their adventures saving them in a MySQL database.
+- **User Service**: Manages user accounts allowing players to create and manage their profiles. When an user is created in the User Service, it is added to queue in the Redis service.
 
 Each microservice is designed to operate independently, communicating with each other via RESTful APIs to create a seamless gaming experience.
 
