@@ -25,6 +25,7 @@ services:
         ports:
             - 8084:80
     microservice_user_redis:
+        container_name: microservice_user_redis
         build:
             context: .
             dockerfile: ./microservices/user/redis/Dockerfile
