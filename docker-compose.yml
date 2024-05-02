@@ -1,6 +1,39 @@
 version: '3'
 services:
     ##
+    # Location Microservice
+    ##
+    microservice_location_php:
+        container_name: microservice_location_php
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./microservices/location/app:/var/www/app:delegated
+        expose:
+            - 9003
+            - 9000
+    microservice_location_nginx:
+        container_name: microservice_location_nginx
+        build:
+            context: .
+            dockerfile: ./microservices/location/nginx/Dockerfile
+        volumes:
+             - ./microservices/location/app:/var/www/app:delegated
+        depends_on:
+            - microservice_location_php
+        ports:
+            - 8082:80
+    microservice_location_redis:
+        container_name: microservice_location_redis
+        build:
+            context: .
+            dockerfile: ./microservices/location/redis/Dockerfile
+        expose:
+            - 6379
+        ports:
+            - 6380:6379
+    ##
     # User Microservice
     ##
     microservice_user_php:
