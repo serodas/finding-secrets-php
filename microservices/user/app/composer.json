@@ -13,6 +13,7 @@
         "predis/predis": "^2.2"
     },
     "require-dev": {
+        "behat/behat": "^3.14",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.4",
         "phpunit/phpunit": "^10.0"
