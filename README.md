@@ -19,10 +19,13 @@
 
 The application is structured into four distinct microservices:
 
-- **Battle Service**: Manages the combat aspects of the game, allowing players to engage in battles while searching for secrets.
-- **Location Service**: Handles geolocation functionality, enabling the game to place secrets around the world and track player movements.
-- **Secret Service**: Responsible for the generation and management of secrets that players find during their adventures saving them in a MySQL database.
-- **User Service**: Manages user accounts allowing players to create and manage their profiles. When an user is created in the User Service, it is added to queue in the Redis service.
+- **Battle Service**: This service will be responsible for the users battle, keeping a record of each battle and moving secrets from the loser wallet to the winner
+- **Location Service**: To add an extra layer of complexity, we decided to create a service to manage any task related to locations. The main responsibility is to
+know where everything is located; for example, if the user service needs to know if there are other players in the area, sending a message with the geolocalization
+to this service, the response will tell the User Service who is in the area.
+- **Secret Service**: This is one of the core services for our game because it will be responsible for all the secrets stuff.
+- **User Service**: The main responsibility of this service is user registration and management. To keep the example small, we will also add extra
+functionalities, such as user notifications and secrets wallet management. When an user is created in the User Service, it is added to queue in the Redis service.
 
 Each microservice is designed to operate independently, communicating with each other via RESTful APIs to create a seamless gaming experience.
 
