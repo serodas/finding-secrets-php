@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\GiftJob;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
@@ -34,6 +35,7 @@ class UserController extends Controller
 
     public function create(Request $request): JsonResponse
     {
+        $this->dispatch(new GiftJob());
         return response()->json(['method' => 'create']);
     }
 
