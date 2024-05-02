@@ -84,10 +84,6 @@ class UserController extends Controller
             throw $e;
         }
 
-        return response()->json(
-            [
-                'data'       => json_decode($remoteCall->getBody()),
-            ]
-        );
+        return response()->json(json_decode($remoteCall->getBody()));
     }
 }

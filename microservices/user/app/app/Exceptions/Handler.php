@@ -2,10 +2,12 @@
 
 namespace App\Exceptions;
 
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
@@ -49,6 +51,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        switch ($exception) {
+            case ($exception instanceof ConnectException):
+                return response()->json(
+                    [
+                        'error' => 'connection_error',
+                        'code' => '123'
+                    ],
+                    Response::HTTP_SERVICE_UNAVAILABLE
+                );
+                break;
+            default:
+                return parent::render($request, $exception);
+                break;
+        }
     }
 }
