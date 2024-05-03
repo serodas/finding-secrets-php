@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
+
 class LocationController extends Controller
 {
     const ROUND_DECIMALS        = 2;
     const MAX_CLOSEST_SECRETS   = 3;
+
+    const DEFAULT_CACHE_TIME    = 1;
 
     public static $cacheSecrets = [
         [
@@ -61,23 +65,33 @@ class LocationController extends Controller
         return $this->getHaversineDistance($pointA, $pointB, $unit);
     }
 
-    public function getClosestSecrets($originPoint)
+    public function getClosestSecrets($originPoint): array
     {
-        $closestSecrets = [];
-        $preprocessClosure = function ($item) use ($originPoint) {
-            return $this->getDistance($item['location'], $originPoint);
-        };
-        $distances = array_map($preprocessClosure, self::$cacheSecrets);
-        asort($distances);
-        $distances = array_slice(
-            $distances,
-            0,
-            self::MAX_CLOSEST_SECRETS,
-            true
+        $cacheKey = 'L' . $originPoint['latitude'] . $originPoint['longitude'];
+        $closestSecrets = Cache::remember(
+            $cacheKey,
+            self::DEFAULT_CACHE_TIME,
+            function () use ($originPoint) {
+                $calculatedClosestSecrets = [];
+                $distances = array_map(
+                    function ($item) use ($originPoint) {
+                        return $this->getDistance($item['location'], $originPoint);
+                    },
+                    self::$cacheSecrets
+                );
+                asort($distances);
+                $distances = array_slice(
+                    $distances,
+                    0,
+                    self::MAX_CLOSEST_SECRETS,
+                    true
+                );
+                foreach ($distances as $key => $distance) {
+                    $calculatedClosestSecrets[] = self::$cacheSecrets[$key];
+                }
+                return $calculatedClosestSecrets;
+            }
         );
-        foreach ($distances as $key => $distance) {
-            $closestSecrets[] = self::$cacheSecrets[$key];
-        }
         return $closestSecrets;
     }
 
