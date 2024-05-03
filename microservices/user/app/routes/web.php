@@ -17,6 +17,10 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
+
 $router->group(
     [
         'prefix' => 'api/v1',

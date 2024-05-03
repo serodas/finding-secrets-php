@@ -10,7 +10,8 @@
         "illuminate/mail": "^10.48",
         "illuminate/redis": "^10.48",
         "laravel/lumen-framework": "^10.0",
-        "predis/predis": "^2.2"
+        "predis/predis": "^2.2",
+        "sentry/sentry-laravel": "^4.5"
     },
     "require-dev": {
         "behat/behat": "^3.14",

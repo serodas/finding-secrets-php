@@ -14,6 +14,8 @@
 2. Clone this project: `git clone https://github.com/serodas/finding-secrets-php.git`
 3. Move to the project folder: `cd finding-secrets-php`
 4. Run the Docker containers: `docker-compose up -d`
+5. Run `docker exec -it sentry sentry upgrade` to create the Sentry tables
+6. Log in `http://localhost:9876/auth/login/sentry/` with the user you created in the previous step and create a new project to start tracking your errors/logs.
 
 ## Project Structure
 

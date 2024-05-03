@@ -18,12 +18,7 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontReport = [
-        AuthorizationException::class,
-        HttpException::class,
-        ModelNotFoundException::class,
-        ValidationException::class,
-    ];
+    protected $dontReport = [];
 
     /**
      * Report or log an exception.
@@ -37,6 +32,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
+        if ($this->shouldReport($exception)) {
+            app('sentry')->captureException($exception);
+        }
         parent::report($exception);
     }
 

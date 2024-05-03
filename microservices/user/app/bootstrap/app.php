@@ -22,6 +22,7 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
+$app->register('Sentry\Laravel\ServiceProvider');
 
 // $app->withFacades();
 
@@ -60,9 +61,7 @@ $app->singleton(
 */
 
 $app->configure('app');
-$app->register(
-    Illuminate\Redis\RedisServiceProvider::class
-);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->configure('database');
 $app->configure('queue');
 
