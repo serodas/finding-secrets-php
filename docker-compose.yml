@@ -66,6 +66,17 @@ services:
             - 6379
         ports:
             - 6379:6379
+    microservice_user_database:
+        container_name: microservice_user_database
+        image: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=mysecret
+            - MYSQL_DATABASE=finding_users
+            - MYSQL_USER=secret
+            - MYSQL_PASSWORD=mysecret
+        ports:
+            - 6667:3306
+        command: ["--default-authentication-plugin=mysql_native_password"]
 
     ##
     # Battle Microservice
