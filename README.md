@@ -16,6 +16,7 @@
 4. Run the Docker containers: `docker-compose up -d`
 5. Run `docker exec -it sentry sentry upgrade` to create the Sentry tables
 6. Log in `http://localhost:9876/auth/login/sentry/` with the user you created in the previous step and create a new project to start tracking your errors/logs.
+7. Run `docker exec -it microservice_secret_php /bin/bash` and run `php artisan migrate` so `php artisan db:seed` to create the tables in the database and seed the secrets table.
 
 ## Project Structure
 
