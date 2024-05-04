@@ -2,6 +2,9 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use Illuminate\Http\Request;
+use Tymon\JWTAuth\JWTAuth;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -17,13 +20,22 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
+$router->group(
+    [
+        'prefix' => 'api/v1',
+    ],
+    function () use ($router) {
+        $router->post('login', 'AuthController@login');
+        $router->post('logout', 'AuthController@logout');
+        $router->post('refresh', 'AuthController@refresh');
+        $router->post('user-profile', 'AuthController@me');
+    }
+);
 
 $router->group(
     [
         'prefix' => 'api/v1',
+        'middleware' => 'auth',
     ],
     function () use ($router) {
         $router->get('users', 'UserController@index');

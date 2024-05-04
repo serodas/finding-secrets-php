@@ -11,7 +11,8 @@
         "illuminate/redis": "^10.48",
         "laravel/lumen-framework": "^10.0",
         "predis/predis": "^2.2",
-        "sentry/sentry-laravel": "^4.5"
+        "sentry/sentry-laravel": "^4.5",
+        "tymon/jwt-auth": "^2.1"
     },
     "require-dev": {
         "behat/behat": "^3.14",
