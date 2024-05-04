@@ -6,7 +6,7 @@
  * @see https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/
  */
 return [
-    'breadcrumbs.sql_bindings' => true,
+
     // @see https://docs.sentry.io/product/sentry-basics/dsn-explainer/
     'dsn' => env('SENTRY_LARAVEL_DSN', env('SENTRY_DSN')),
 
