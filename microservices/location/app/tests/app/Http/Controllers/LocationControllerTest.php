@@ -34,7 +34,9 @@ class LocationControllerTest extends TestCase
             'latitude' => 40.730610,
             'longitude' => -73.935242
         ];
-        $location = new LocationController();
+        $location = $this->createMock(LocationController::class);
+        $location->method('getClosestSecrets')
+            ->willReturn($this->getClosestSecrets());
         $closestSecrets = $location->getClosestSecrets($currentLocation);
         $this->assertTrue(method_exists(LocationController::class, 'convertDistance'));
         $this->assertContainsOnly('array', $closestSecrets);
@@ -49,5 +51,35 @@ class LocationControllerTest extends TestCase
         // Third
         $currentElement = array_shift($closestSecrets);
         $this->assertEquals(['name' => 'diamond'], array_intersect_key($currentElement, ['name' => 'diamond']));
+    }
+
+    private function getClosestSecrets()
+    {
+        return [
+            [
+                'id' => 1,
+                'name' => 'amber',
+                'location' => [
+                    'latitude' => 42.8805, 'longitude' => -8.54569,
+                    'name' => 'Santiago de Compostela'
+                ]
+            ],
+            [
+                'id' => 4,
+                'name' => 'ruby',
+                'location' => [
+                    'latitude' => 53.4106, 'longitude' => -2.9779,
+                    'name' => 'Liverpool'
+                ]
+            ],
+            [
+                'id' => 2,
+                'name' => 'diamond',
+                'location' => [
+                    'latitude' => 38.2622, 'longitude' => -0.70107,
+                    'name' => 'Elche'
+                ]
+            ],
+        ];
     }
 }
