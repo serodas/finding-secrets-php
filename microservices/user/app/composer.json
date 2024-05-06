@@ -10,6 +10,7 @@
         "illuminate/mail": "^10.48",
         "illuminate/redis": "^10.48",
         "laravel/lumen-framework": "^10.0",
+        "league/fractal": "^0.20.1",
         "predis/predis": "^2.2",
         "sentry/sentry-laravel": "^4.5",
         "tymon/jwt-auth": "^2.1"
