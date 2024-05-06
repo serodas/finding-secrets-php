@@ -47,5 +47,11 @@ Each microservice is designed to operate independently, communicating with each 
 | http://localhost:8083/api/v1/secrets | | GET | Returns a list of all secrets |
 | http://localhost:8083/api/v1/secrets/{id} | | GET | Retrieves a specific secret identified by the secret ID |
 
+### Battle Service
+| **Endpoint** | **Role**| **Method** | **Purpose** |
+| --- | --- | --- | --- |
+| http://localhost:8081/api/v1/battle/duel | | POST | Initiates a duel between two users as userA and UserB, returns the result of the duel |
+
+
 ## Reference
 Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar
