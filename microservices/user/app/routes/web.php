@@ -29,6 +29,7 @@ $router->group(
         $router->post('logout', 'AuthController@logout');
         $router->post('refresh', 'AuthController@refresh');
         $router->post('user-profile', 'AuthController@me');
+        $router->get('users/{id}', 'UserController@get');
     }
 );
 
@@ -39,7 +40,6 @@ $router->group(
     ],
     function () use ($router) {
         $router->get('users', 'UserController@index');
-        $router->get('users/{id}', 'UserController@get');
         $router->post('users', 'UserController@create');
         $router->put('users/{id}', 'UserController@update');
         $router->delete('users/{id}', 'UserController@delete');
