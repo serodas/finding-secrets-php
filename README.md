@@ -31,5 +31,16 @@ functionalities, such as user notifications and secrets wallet management. When 
 
 Each microservice is designed to operate independently, communicating with each other via RESTful APIs to create a seamless gaming experience.
 
+## API Paths To Test application
+### User Service
+| **Endpoint** | **Role**| **Method** | **Purpose** |
+| --- | --- | --- | --- |
+| http://localhost:8084/api/v1/login/ | Anyone with a valid username and password | POST | Generates access tokens that can be used in other API calls in this microservice |
+| http://localhost:8084/api/v1/users | Anyone with a valid user token | POST | Creates a new user with name, email and password |
+| http://localhost:8084/api/v1/users | Anyone with a valid user token | GET | Returns a list of all users in the system|
+| http://localhost:8084/api/v1/users/{id}| Anyone with a valid user token | GET | Retrieves a specific user identified by the user ID |
+| http://localhost:8084/api/v1/users/{id}/wallet | Anyone with a valid user token | GET | Gets a secret from the user wallet |
+
+
 ## Reference
 Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar
