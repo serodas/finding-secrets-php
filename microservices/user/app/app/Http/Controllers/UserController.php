@@ -3,34 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\GiftJob;
+use App\Models\User;
+use App\Transformers\UserTransformer;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Collection;
 
 class UserController extends Controller
 {
-    private $userCache = [
-        1 => [
-            'name' => 'John',
-            'city' => 'Barcelona'
-        ],
-        2 => [
-            'name' => 'Joe',
-            'city' => 'Paris'
-        ]
-    ];
+    public function __construct(
+        private Manager $fractal,
+        private UserTransformer $userTransformer
+    ) {
+    }
+
     public function index(): JsonResponse
     {
-        return response()->json(['method' => 'index']);
+        $records = User::all();
+        $collection = new Collection(
+            $records,
+            $this->userTransformer
+        );
+        $data = $this->fractal->createData($collection)->toArray();
+        return response()->json($data);
     }
 
     public function get($id): JsonResponse
     {
-        return response()->json(
-            $this->userCache[$id]
-        );
+        $record = User::query()->find($id);
+
+        if ($record) {
+            return response()->json($record);
+        }
+
+        return response()->json(['error' => 'Record not found'], 404);
     }
 
     public function create(Request $request): JsonResponse
