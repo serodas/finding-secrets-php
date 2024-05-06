@@ -31,21 +31,21 @@ Each microservice is designed to operate independently, communicating with each 
 
 ## API Paths To Test application
 ### Battle Microservice
-| **Endpoint** | **Role**| **Method** | **Purpose** |
-| --- | --- | --- | --- |
-| http://localhost:8081/api/v1/battle/duel | | POST | Initiates a duel between two users, userA and UserB, returns the result of the duel |
+| **Endpoint** | **Method** | **Purpose** |
+| --- | --- | --- |
+| http://localhost:8081/api/v1/battle/duel | POST | Initiates a duel between two users, userA and UserB, returns the result of the duel |
 
 ### Location Microservice
-| **Endpoint** | **Role**| **Method** | **Purpose** |
-| --- | --- | --- | --- |
-| http://localhost:8082/api/v1/locations/secrets | | POST | Returns a list of the closest secrets based on the provided latitude and longitude |
+| **Endpoint** | **Method** | **Purpose** |
+| --- | --- | --- |
+| http://localhost:8082/api/v1/locations/secrets | POST | Returns a list of the closest secrets based on the provided latitude and longitude |
 
 ### Secret Microservice
-| **Endpoint** | **Role**| **Method** | **Purpose** |
-| --- | --- | --- | --- |
-| http://localhost:8083/api/v1/secrets | | POST | Creates a new secret with name, latitud, longitude, location_name |
-| http://localhost:8083/api/v1/secrets | | GET | Returns a list of all secrets |
-| http://localhost:8083/api/v1/secrets/{id} | | GET | Retrieves a specific secret identified by the secret ID |
+| **Endpoint** | **Method** | **Purpose** |
+| --- | --- | --- |
+| http://localhost:8083/api/v1/secrets | POST | Creates a new secret with name, latitud, longitude, location_name |
+| http://localhost:8083/api/v1/secrets | GET | Returns a list of all secrets |
+| http://localhost:8083/api/v1/secrets/{id} | GET | Retrieves a specific secret identified by the secret ID |
 
 ### User Microservice
 | **Endpoint** | **Role**| **Method** | **Purpose** |
