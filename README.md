@@ -15,7 +15,7 @@
 3. Move to the project folder: `cd finding-secrets-php`
 4. Run the Docker containers: `docker-compose up -d`
 5. Run `docker exec -it microservice_secret_php /bin/bash` to access the container's shell, then run `php artisan migrate` followed by `php artisan db:seed` to create the tables in the database and seed the secrets table.
-5. Run `docker exec -it microservice_user_php /bin/bash` to access the container's shell, then run `php artisan migrate` followed by `php artisan db:seed` to create the tables in the database and seed the secrets table.
+5. Run `docker exec -it microservice_user_php /bin/bash` to access the container's shell, then run `php artisan migrate` followed by `php artisan db:seed` to create the tables in the database and seed the users table.
 
 ## Project Structure
 
