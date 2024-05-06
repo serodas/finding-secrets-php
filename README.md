@@ -22,8 +22,7 @@
 The application is structured into four distinct microservices:
 
 - **Battle microservice**: This service will be responsible for the users battle, keeping a record of each battle and moving secrets from the loser wallet to the winner
-- **Location microservice**: To add an extra layer of complexity, we decided to create a service to manage any task related to locations. The main responsibility is to know where everything is located; for example, if the user service needs to know if there are other players in the area, sending a message with the geolocalization
-to this service, the response will tell the User Service who is in the area.
+- **Location microservice**: The main responsibility is to know where everything is located; for example, if the user service needs to know if there are secrets in the area, sending a message with the geolocalization to this service, the response will tell the User Service what secretes are in the area.
 - **Secret microservice**: This is one of the core services for our game because it will be responsible for all the secrets stuff.
 - **User microservice**: The main responsibility of this service is user registration and management. To keep the example small, we will also add extra
 functionalities, such as user notifications and secrets wallet management. When an user is created in the User Service, it is added to queue in the Redis service.
@@ -51,6 +50,11 @@ Each microservice is designed to operate independently, communicating with each 
 | **Endpoint** | **Role**| **Method** | **Purpose** |
 | --- | --- | --- | --- |
 | http://localhost:8081/api/v1/battle/duel | | POST | Initiates a duel between two users as userA and UserB, returns the result of the duel |
+
+### Location Microservice
+| **Endpoint** | **Role**| **Method** | **Purpose** |
+| --- | --- | --- | --- |
+| http://localhost:8082/api/v1/locations/secrets | | POST | Returns a list of the closest secrets based on the provided latitude and longitude |
 
 ## Reference
 Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar
