@@ -30,14 +30,15 @@ functionalities, such as user notifications and secrets wallet management. When 
 Each microservice is designed to operate independently, communicating with each other via RESTful APIs to create a seamless gaming experience.
 
 ## API Paths To Test application
-### User Microservice
+### Battle Microservice
 | **Endpoint** | **Role**| **Method** | **Purpose** |
 | --- | --- | --- | --- |
-| http://localhost:8084/api/v1/login | Anyone with a valid username and password | POST | Generates access tokens that can be used in other API calls in this microservice |
-| http://localhost:8084/api/v1/users | Anyone with a valid user token | POST | Creates a new user with name, email and password |
-| http://localhost:8084/api/v1/users | Anyone with a valid user token | GET | Returns a list of all users |
-| http://localhost:8084/api/v1/users/{id}| Anyone with a valid user token | GET | Retrieves a specific user identified by the user ID |
-| http://localhost:8084/api/v1/users/{id}/wallet | Anyone with a valid user token | GET | Gets a secret from the user wallet |
+| http://localhost:8081/api/v1/battle/duel | | POST | Initiates a duel between two users, userA and UserB, returns the result of the duel |
+
+### Location Microservice
+| **Endpoint** | **Role**| **Method** | **Purpose** |
+| --- | --- | --- | --- |
+| http://localhost:8082/api/v1/locations/secrets | | POST | Returns a list of the closest secrets based on the provided latitude and longitude |
 
 ### Secret Microservice
 | **Endpoint** | **Role**| **Method** | **Purpose** |
@@ -46,15 +47,14 @@ Each microservice is designed to operate independently, communicating with each 
 | http://localhost:8083/api/v1/secrets | | GET | Returns a list of all secrets |
 | http://localhost:8083/api/v1/secrets/{id} | | GET | Retrieves a specific secret identified by the secret ID |
 
-### Battle Microservice
+### User Microservice
 | **Endpoint** | **Role**| **Method** | **Purpose** |
 | --- | --- | --- | --- |
-| http://localhost:8081/api/v1/battle/duel | | POST | Initiates a duel between two users as userA and UserB, returns the result of the duel |
-
-### Location Microservice
-| **Endpoint** | **Role**| **Method** | **Purpose** |
-| --- | --- | --- | --- |
-| http://localhost:8082/api/v1/locations/secrets | | POST | Returns a list of the closest secrets based on the provided latitude and longitude |
+| http://localhost:8084/api/v1/login | Anyone with a valid username and password | POST | Generates access tokens that can be used in other API calls in this microservice |
+| http://localhost:8084/api/v1/users | Anyone with a valid user token | POST | Creates a new user with name, email and password |
+| http://localhost:8084/api/v1/users | Anyone with a valid user token | GET | Returns a list of all users |
+| http://localhost:8084/api/v1/users/{id}| Anyone with a valid user token | GET | Retrieves a specific user identified by the user ID |
+| http://localhost:8084/api/v1/users/{id}/wallet | Anyone with a valid user token | GET | Gets a secret from the user wallet |
 
 ## Reference
 Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar
