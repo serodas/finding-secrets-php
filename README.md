@@ -34,7 +34,7 @@ Each microservice is designed to operate independently, communicating with each 
 ### User Microservice
 | **Endpoint** | **Role**| **Method** | **Purpose** |
 | --- | --- | --- | --- |
-| http://localhost:8084/api/v1/login/ | Anyone with a valid username and password | POST | Generates access tokens that can be used in other API calls in this microservice |
+| http://localhost:8084/api/v1/login | Anyone with a valid username and password | POST | Generates access tokens that can be used in other API calls in this microservice |
 | http://localhost:8084/api/v1/users | Anyone with a valid user token | POST | Creates a new user with name, email and password |
 | http://localhost:8084/api/v1/users | Anyone with a valid user token | GET | Returns a list of all users |
 | http://localhost:8084/api/v1/users/{id}| Anyone with a valid user token | GET | Retrieves a specific user identified by the user ID |
