@@ -17,6 +17,22 @@ class UsersSeeder extends Seeder
         DB::table('users')->delete();
         DB::table('users')->insert([
             [
+                'name'      => 'John Doe',
+                'city'      => 'Barcelona',
+                'email'     => 'john@phpmicroservices.com',
+                'password'  =>  Hash::make('852456'),
+                'api_token' => NULL,
+            ],
+            [
+                'name'      => 'Joe',
+                'city'      => 'Paris',
+                'email'     => 'joe@phpmicroservices.com',
+                'password'  =>  Hash::make('963258741'),
+                'api_token' => NULL,
+            ],
+            [
+                'name'      => 'Samir Rodas',
+                'city'      => 'Pereira',
                 'email'     => 'serodas@phpmicroservices.com',
                 'password'  =>  Hash::make('12345678'),
                 'api_token' => NULL,
