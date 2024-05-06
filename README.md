@@ -22,8 +22,7 @@
 The application is structured into four distinct microservices:
 
 - **Battle Service**: This service will be responsible for the users battle, keeping a record of each battle and moving secrets from the loser wallet to the winner
-- **Location Service**: To add an extra layer of complexity, we decided to create a service to manage any task related to locations. The main responsibility is to
-know where everything is located; for example, if the user service needs to know if there are other players in the area, sending a message with the geolocalization
+- **Location Service**: To add an extra layer of complexity, we decided to create a service to manage any task related to locations. The main responsibility is to know where everything is located; for example, if the user service needs to know if there are other players in the area, sending a message with the geolocalization
 to this service, the response will tell the User Service who is in the area.
 - **Secret Service**: This is one of the core services for our game because it will be responsible for all the secrets stuff.
 - **User Service**: The main responsibility of this service is user registration and management. To keep the example small, we will also add extra
@@ -37,10 +36,16 @@ Each microservice is designed to operate independently, communicating with each 
 | --- | --- | --- | --- |
 | http://localhost:8084/api/v1/login/ | Anyone with a valid username and password | POST | Generates access tokens that can be used in other API calls in this microservice |
 | http://localhost:8084/api/v1/users | Anyone with a valid user token | POST | Creates a new user with name, email and password |
-| http://localhost:8084/api/v1/users | Anyone with a valid user token | GET | Returns a list of all users in the system|
+| http://localhost:8084/api/v1/users | Anyone with a valid user token | GET | Returns a list of all users |
 | http://localhost:8084/api/v1/users/{id}| Anyone with a valid user token | GET | Retrieves a specific user identified by the user ID |
 | http://localhost:8084/api/v1/users/{id}/wallet | Anyone with a valid user token | GET | Gets a secret from the user wallet |
 
+### Secret Service
+| **Endpoint** | **Role**| **Method** | **Purpose** |
+| --- | --- | --- | --- |
+| http://localhost:8083/api/v1/secrets | | POST | Creates a new secret with name, latitud, longitude, location_name |
+| http://localhost:8083/api/v1/secrets | | GET | Returns a list of all secrets |
+| http://localhost:8083/api/v1/secrets/{id} | | GET | Retrieves a specific secret identified by the secret ID |
 
 ## Reference
 Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar
