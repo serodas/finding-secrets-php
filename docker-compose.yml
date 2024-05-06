@@ -1,6 +1,32 @@
 version: '3'
 services:
     ##
+    # Battle Microservice
+    ##
+    microservice_battle_php:
+        container_name: microservice_battle_php
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./microservices/battle/app:/var/www/app:delegated
+        expose:
+            - 9003
+            - 9000
+    microservice_battle_nginx:
+        container_name: microservice_battle_nginx
+        build:
+            context: .
+            dockerfile: ./microservices/battle/nginx/Dockerfile
+        volumes:
+            - ./microservices/battle/app:/var/www/app:delegated
+        depends_on:
+            - microservice_battle_php
+        ports:
+            - 8443:443
+            - 8081:80
+
+    ##
     # Location Microservice
     ##
     microservice_location_php:
@@ -33,6 +59,42 @@ services:
             - 6379
         ports:
             - 6380:6379
+
+    ##
+    # Secret Microservice
+    ##
+    microservice_secret_php:
+        container_name: microservice_secret_php
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./microservices/secret/app:/var/www/app:delegated
+        expose:
+            - 9000
+    microservice_secret_nginx:
+        container_name: microservice_secret_nginx
+        build:
+            context: .
+            dockerfile: ./microservices/secret/nginx/Dockerfile
+        volumes:
+            - ./microservices/secret/app:/var/www/app:delegated
+        depends_on:
+            - microservice_secret_php
+        ports:
+            - 8083:80
+    microservice_secret_database:
+        container_name: microservice_secret_database
+        image: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=mysecret
+            - MYSQL_DATABASE=finding_secrets
+            - MYSQL_USER=secret
+            - MYSQL_PASSWORD=mysecret
+        ports:
+            - 6666:3306
+        command: ["--default-authentication-plugin=mysql_native_password"]
+
     ##
     # User Microservice
     ##
@@ -76,68 +138,6 @@ services:
             - MYSQL_PASSWORD=mysecret
         ports:
             - 6667:3306
-        command: ["--default-authentication-plugin=mysql_native_password"]
-
-    ##
-    # Battle Microservice
-    ##
-    microservice_battle_php:
-        container_name: microservice_battle_php
-        build:
-            context: .
-            dockerfile: Dockerfile
-        volumes:
-            - ./microservices/battle/app:/var/www/app:delegated
-        expose:
-            - 9003
-            - 9000
-
-    microservice_battle_nginx:
-        container_name: microservice_battle_nginx
-        build:
-            context: .
-            dockerfile: ./microservices/battle/nginx/Dockerfile
-        volumes:
-            - ./microservices/battle/app:/var/www/app:delegated
-        depends_on:
-            - microservice_battle_php
-        ports:
-            - 8443:443
-            - 8081:80
-
-    ##
-    # Secret Microservice
-    ##
-    microservice_secret_php:
-        container_name: microservice_secret_php
-        build:
-            context: .
-            dockerfile: Dockerfile
-        volumes:
-            - ./microservices/secret/app:/var/www/app:delegated
-        expose:
-            - 9000
-    microservice_secret_nginx:
-        container_name: microservice_secret_nginx
-        build:
-            context: .
-            dockerfile: ./microservices/secret/nginx/Dockerfile
-        volumes:
-            - ./microservices/secret/app:/var/www/app:delegated
-        depends_on:
-            - microservice_secret_php
-        ports:
-            - 8083:80
-    microservice_secret_database:
-        container_name: microservice_secret_database
-        image: mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=mysecret
-            - MYSQL_DATABASE=finding_secrets
-            - MYSQL_USER=secret
-            - MYSQL_PASSWORD=mysecret
-        ports:
-            - 6666:3306
         command: ["--default-authentication-plugin=mysql_native_password"]
 
     ##
