@@ -1,5 +1,5 @@
 <h1 align="center">
-  🐘 Finding Secrets
+  🔍👀 Finding Secrets 🐘
 </h1>
 
 <p align="center">
