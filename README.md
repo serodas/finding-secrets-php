@@ -14,8 +14,8 @@
 2. Clone this project: `git clone https://github.com/serodas/finding-secrets-php.git`
 3. Move to the project folder: `cd finding-secrets-php`
 4. Run the Docker containers: `docker-compose up -d`
-5. Run `docker exec -it microservice_secret_php /bin/bash` and run `php artisan migrate` so `php artisan db:seed` to create the tables in the database and seed the secrets table.
-5. Run `docker exec -it microservice_user_php /bin/bash` and run `php artisan migrate` so `php artisan db:seed` to create the tables in the database and seed the secrets table.
+5. Run `docker exec -it microservice_secret_php /bin/bash` to access the container's shell, then run `php artisan migrate` followed by `php artisan db:seed` to create the tables in the database and seed the secrets table.
+5. Run `docker exec -it microservice_user_php /bin/bash` to access the container's shell, then run `php artisan migrate` followed by `php artisan db:seed` to create the tables in the database and seed the secrets table.
 
 ## Project Structure
 
@@ -57,4 +57,4 @@ Each microservice is designed to operate independently, communicating with each 
 | http://localhost:8084/api/v1/users/{id}/wallet | Anyone with a valid user token | GET | Gets a secret from the user wallet |
 
 ## Reference
-Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar
+Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar 📖
