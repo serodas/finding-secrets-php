@@ -90,7 +90,13 @@ class UserController extends Controller
 
     public function delete($id): JsonResponse
     {
-        return response()->json(['method' => 'delete', 'id' => $id]);
+        $user = User::query()->find($id);
+        if ($user) {
+            $user->delete();
+            return response()->json([], Response::HTTP_NO_CONTENT);
+        }
+
+        return response()->json(['error' => 'Record not found'], Response::HTTP_NOT_FOUND);
     }
 
     public function getCurrentLocation($id): JsonResponse
