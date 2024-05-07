@@ -58,6 +58,10 @@ Each microservice is designed to operate independently, communicating with each 
 | http://localhost:8084/api/v1/users/{id} | Anyone with a valid user token | UPDATE | Updates an user |
 | http://localhost:8084/api/v1/users/{id} | Anyone with a valid user token | DELETE | Deletes an user |
 
+```
+Note: If you are using Rest Client extension in VSCode, you can use the provided requests in the etc/endpoints folder to test the API endpoints.
+```
+
 ## Monitoring with Prometheus
 Prometheus is a monitoring tool that collects metrics from the microservices and stores them in a time-series database. To access the Prometheus dashboard, navigate to `http://localhost:9999` in your browser.
 
