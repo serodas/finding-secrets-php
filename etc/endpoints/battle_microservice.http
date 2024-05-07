@@ -1,0 +1,10 @@
+# Initiates a duel between two users, userA and UserB, returns the result of the duel
+POST http://localhost:8081/api/v1/battle/duel
+Content-Type: application/json
+
+{
+    "userA" : 1,
+    "userB" : 2
+}
+
+###

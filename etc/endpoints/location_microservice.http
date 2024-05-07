@@ -1,0 +1,10 @@
+# Returns a list of the closest secrets based on the provided latitude and longitude
+POST http://localhost:8082/api/v1/locations/secrets
+Content-Type: application/json
+
+{
+    "latitude"  : 40.730610,
+    "longitude" : -73.935242
+}
+
+###

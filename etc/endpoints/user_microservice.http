@@ -1,0 +1,62 @@
+# Generates access tokens that can be used in other API calls in this microservice
+POST http://localhost:8084/api/v1/login
+Content-Type: application/json
+
+{
+    "email" : "serodas@phpmicroservices.com",
+    "password": "12345678"
+}
+
+###
+
+# Creates a new user with name, email and password
+POST http://localhost:8084/api/v1/users
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODQvYXBpL3YxL2xvZ2luIiwiaWF0IjoxNzE1MTA4NDI3LCJleHAiOjE3MTUxMTIwMjcsIm5iZiI6MTcxNTEwODQyNywianRpIjoiZUtsR2xjWWtvemZOdzB4ZiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lTMXaRE2fSqjiGOJZ7eSZpZKiLxCU6UkjDZ7vIyqo1I
+
+{
+    "name": "test",
+    "email": "test@phpmicroservices.com",
+    "city": "Pereira",
+    "password": "12345678"
+}
+
+###
+
+# Returns a list of all users
+GET http://localhost:8084/api/v1/users
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODQvYXBpL3YxL2xvZ2luIiwiaWF0IjoxNzE1MTA4NDI3LCJleHAiOjE3MTUxMTIwMjcsIm5iZiI6MTcxNTEwODQyNywianRpIjoiZUtsR2xjWWtvemZOdzB4ZiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lTMXaRE2fSqjiGOJZ7eSZpZKiLxCU6UkjDZ7vIyqo1I
+
+###
+
+# Retrieves a specific user identified by the user ID
+GET http://localhost:8084/api/v1/users/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODQvYXBpL3YxL2xvZ2luIiwiaWF0IjoxNzE1MTA4NDI3LCJleHAiOjE3MTUxMTIwMjcsIm5iZiI6MTcxNTEwODQyNywianRpIjoiZUtsR2xjWWtvemZOdzB4ZiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lTMXaRE2fSqjiGOJZ7eSZpZKiLxCU6UkjDZ7vIyqo1I
+
+###
+
+# Gets a secret from the user wallet
+GET http://localhost:8084/api/v1/users/1/wallet
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODQvYXBpL3YxL2xvZ2luIiwiaWF0IjoxNzE1MTA4NDI3LCJleHAiOjE3MTUxMTIwMjcsIm5iZiI6MTcxNTEwODQyNywianRpIjoiZUtsR2xjWWtvemZOdzB4ZiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lTMXaRE2fSqjiGOJZ7eSZpZKiLxCU6UkjDZ7vIyqo1I
+
+###
+
+# Updates an user
+PUT http://localhost:8084/api/v1/users/1
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODQvYXBpL3YxL2xvZ2luIiwiaWF0IjoxNzE1MTA4NDI3LCJleHAiOjE3MTUxMTIwMjcsIm5iZiI6MTcxNTEwODQyNywianRpIjoiZUtsR2xjWWtvemZOdzB4ZiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lTMXaRE2fSqjiGOJZ7eSZpZKiLxCU6UkjDZ7vIyqo1I
+
+{
+    "name": "John Doe",
+    "email": "john@phpmicroservices.com",
+    "city": "Pereira",
+    "password": "12345678"
+}
+
+###
+
+# Deletes an user
+DELETE http://localhost:8084/api/v1/users/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODQvYXBpL3YxL2xvZ2luIiwiaWF0IjoxNzE1MTA4NDI3LCJleHAiOjE3MTUxMTIwMjcsIm5iZiI6MTcxNTEwODQyNywianRpIjoiZUtsR2xjWWtvemZOdzB4ZiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lTMXaRE2fSqjiGOJZ7eSZpZKiLxCU6UkjDZ7vIyqo1I
+
+###
