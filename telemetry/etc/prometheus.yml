@@ -3,14 +3,24 @@ scrape_configs:
   - job_name: 'prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['localhost:9999']
 
   - job_name: 'microservice_battle_nginx'
     scrape_interval: 5s
     static_configs:
-      - targets: ['microservice_battle_nginx:8081']
+      - targets: ['localhost:8081']
+
+  - job_name: 'microservice_location_nginx'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:8082']
+
+  - job_name: 'microservice_secret_nginx'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:8083']
 
   - job_name: 'microservice_user_nginx'
     scrape_interval: 5s
     static_configs:
-      - targets: ['microservice_user_nginx:8084']
+      - targets: ['localhost:8084']
