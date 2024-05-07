@@ -67,7 +67,25 @@ class UserController extends Controller
 
     public function update(Request $request, $id): JsonResponse
     {
-        return response()->json(['method' => 'update', 'id' => $id]);
+        $this->validate(
+            $request,
+            [
+                'name'  => 'required|string',
+                'email' => 'required|email|unique:users,email,' . $id . ',id',
+                'city'  => 'required|string',
+                'password' => 'required|string'
+            ]
+        );
+
+        $user = User::query()->find($id);
+        if ($user) {
+            $user->fill($request->all());
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return response()->json($user, Response::HTTP_ACCEPTED);
+        }
+
+        return response()->json(['error' => 'Record not found'], Response::HTTP_NOT_FOUND);
     }
 
     public function delete($id): JsonResponse
