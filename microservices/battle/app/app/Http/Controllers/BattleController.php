@@ -11,10 +11,6 @@ class BattleController extends Controller
 {
     const USER_ENDPOINT = 'http://microservice_user_nginx/api/v1/users/';
 
-    public function __construct(private Dice $dice)
-    {
-    }
-
     public function duel(Request $request): JsonResponse
     {
         $battleAlgorithm = new Dice();
