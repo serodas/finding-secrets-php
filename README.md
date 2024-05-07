@@ -55,6 +55,8 @@ Each microservice is designed to operate independently, communicating with each 
 | http://localhost:8084/api/v1/users | Anyone with a valid user token | GET | Returns a list of all users |
 | http://localhost:8084/api/v1/users/{id}| Anyone with a valid user token | GET | Retrieves a specific user identified by the user ID |
 | http://localhost:8084/api/v1/users/{id}/wallet | Anyone with a valid user token | GET | Gets a secret from the user wallet |
+| http://localhost:8084/api/v1/users/{id} | Anyone with a valid user token | UPDATE | Updates an user |
+| http://localhost:8084/api/v1/users/{id} | Anyone with a valid user token | DELETE | Deletes an user |
 
 ## Reference
 Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar 📖
