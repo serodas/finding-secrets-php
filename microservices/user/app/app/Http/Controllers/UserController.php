@@ -8,8 +8,11 @@ use App\Transformers\UserTransformer;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 
@@ -45,8 +48,21 @@ class UserController extends Controller
 
     public function create(Request $request): JsonResponse
     {
+        $this->validate(
+            $request,
+            [
+                'name'  => 'required|string',
+                'email' => 'required|email|unique:users',
+                'city'  => 'required|string',
+                'password' => 'required|string'
+            ]
+        );
+
+        $user = new User($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
         $this->dispatch(new GiftJob());
-        return response()->json(['method' => 'create']);
+        return response()->json([], Response::HTTP_CREATED);
     }
 
     public function update(Request $request, $id): JsonResponse
