@@ -58,5 +58,10 @@ Each microservice is designed to operate independently, communicating with each 
 | http://localhost:8084/api/v1/users/{id} | Anyone with a valid user token | UPDATE | Updates an user |
 | http://localhost:8084/api/v1/users/{id} | Anyone with a valid user token | DELETE | Deletes an user |
 
+## Monitoring with Prometheus
+Prometheus is a monitoring tool that collects metrics from the microservices and stores them in a time-series database. To access the Prometheus dashboard, navigate to `http://localhost:9999` in your browser.
+
+![Prometheus](etc/screenshots/prometheus.png)
+
 ## Reference
 Based on 'PHP Microservices' book by Carlos Perez Sanchez and Pablo Solar 📖
