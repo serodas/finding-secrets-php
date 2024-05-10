@@ -13,9 +13,18 @@
 1. [Install Docker](https://www.docker.com/get-started)
 2. Clone this project: `git clone https://github.com/serodas/finding-secrets-php.git`
 3. Move to the project folder: `cd finding-secrets-php`
-4. Run the Docker containers: `docker-compose up -d`
-5. Run `docker exec -it microservice_secret_php /bin/bash` to access the container's shell, then run `php artisan migrate` followed by `php artisan db:seed` to create the tables in the database and seed the secrets table.
-5. Run `docker exec -it microservice_user_php /bin/bash` to access the container's shell, then run `php artisan migrate` followed by `php artisan db:seed` to create the tables in the database and seed the users table.
+
+### 🔥 Application execution
+
+1. Bring up the project with Docker executing: `make build`
+2. Install the project dependencies: `make deps`
+
+
+### ✅ Tests execution
+
+1. Install the dependencies if you haven't done it previously: `make deps`
+2. Execute PHPUnit and Behat tests: `make test`
+
 
 ## Project Structure
 
@@ -59,7 +68,8 @@ Each microservice is designed to operate independently, communicating with each 
 | http://localhost:8084/api/v1/users/{id} | Anyone with a valid user token | DELETE | Deletes an user |
 
 ```
-Note: If you are using Rest Client extension in VSCode, you can use the provided requests in the etc/endpoints folder to test the API endpoints.
+Note: If you are using Rest Client extension in VSCode, you can use the provided requests in the etc/endpoints
+folder to test the API endpoints.
 ```
 
 ## Monitoring with Prometheus
