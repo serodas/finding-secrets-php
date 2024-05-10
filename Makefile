@@ -1,4 +1,5 @@
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+SHELL = /bin/sh
 
 .PHONY: build
 build: start
@@ -25,10 +26,10 @@ deps:
 	docker exec microservice_location_php composer install
 	docker exec microservice_secret_php composer install
 	docker exec microservice_user_php composer install
-	docker exec microservice_secret_php php artisan migrate
-	docker exec microservice_user_php php artisan migrate
-	docker exec microservice_secret_php php artisan db:seed
-	docker exec microservice_user_php php artisan db:seed
+	docker exec microservice_battle_php bash -c "if [ ! -f .env ]; then cp .env.example .env; fi"
+	docker exec microservice_location_php bash -c "if [ ! -f .env ]; then cp .env.example .env; fi"
+	docker exec microservice_secret_php bash -c "if [ ! -f .env ]; then cp .env.example .env; fi"
+	docker exec microservice_user_php bash -c "if [ ! -f .env ]; then cp .env.example .env; fi"
 
 .PHONY: test
 test:
@@ -37,3 +38,10 @@ test:
 	docker exec microservice_secret_php ./vendor/bin/phpunit --testdox
 	docker exec microservice_user_php ./vendor/bin/phpunit --testdox
 	docker exec microservice_user_php ./vendor/bin/behat
+
+.PHONY: migrate
+migrate:
+	docker exec microservice_secret_php php artisan migrate
+	docker exec microservice_user_php php artisan migrate
+	docker exec microservice_secret_php php artisan db:seed
+	docker exec microservice_user_php php artisan db:seed
