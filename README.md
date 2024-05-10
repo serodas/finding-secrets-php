@@ -18,7 +18,7 @@
 
 1. Bring up the project with Docker executing: `make build`
 2. Install the project dependencies: `make deps`
-
+3. Run the migrations: `make migrate`
 
 ### ✅ Tests execution
 
